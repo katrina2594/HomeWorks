@@ -1,0 +1,47 @@
+﻿<Window x:Class="Task_2_1_2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Task_2_1_2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="200">
+    <Grid>
+        <Ellipse
+            Name="EllipseRed"
+            Grid.Column="1" 
+            HorizontalAlignment="Center" 
+            Height="100" Margin="0,40,0,0" 
+            Stroke="Black" 
+            VerticalAlignment="Top" 
+            Width="100" 
+            Fill="Red"/>
+        <Ellipse
+            Name="EllipseYellow"
+            Grid.Column="1" 
+            HorizontalAlignment="Center" 
+            Height="100" Margin="0,150,0,0" 
+            Stroke="Black" 
+            VerticalAlignment="Top" 
+            Width="100"
+            Fill="Gray"/>
+        <Ellipse
+            Name="EllipseGreen"
+            Grid.Column="1" 
+            HorizontalAlignment="Center" 
+            Height="100" Margin="0,260,0,0" 
+            Stroke="Black" 
+            VerticalAlignment="Top" 
+            Width="100"
+            Fill="Gray"/>
+        <Button
+            Name="Button1"
+            Content="Next" 
+            HorizontalAlignment="Center" 
+            Margin="0,414,0,0" 
+            VerticalAlignment="Top"
+            Width="100"
+            Height="30" Click="Button1_Click"
+            />
+    </Grid>
+</Window>
