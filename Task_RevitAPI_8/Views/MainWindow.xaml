@@ -1,0 +1,206 @@
+﻿<Window x:Class="Task_RevitAPI_8.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Task_RevitAPI_8.Views"
+        xmlns:ViewModel="clr-namespace:Task_RevitAPI_8.ViewModels"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance ViewModel:MainWindowViewModel}"
+        Title="Анализатор геометрии стен" Height="600" Width="400" Topmost="True">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="130"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="110"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock
+            Grid.Row="0"
+            FontSize="18"
+            FontWeight="Bold"
+            Margin="5"
+            Text="Анализ геометрии стены"
+            HorizontalAlignment="Center"/>
+        <Button
+            Grid.Row="1"
+            Height="25"
+            Width="100"
+            Content="Выбрать стену" 
+            Background="#FF78DFE3"
+            Margin="10"
+            Command="{Binding WallCheck}"
+            />
+        <Border
+            Grid.Row="2"
+            CornerRadius="5"
+            Padding="16" 
+            BorderBrush="#FF11B6F9" 
+            BorderThickness="1"
+            Margin="0 10 0 10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Text="Информация о стене"
+                    FontWeight="Bold"/>
+                <TextBlock
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Text="Имя стены:"/>
+                <TextBlock
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Text="{Binding WallInfo.Name}"/>
+                <TextBlock
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Text="Тип:"/>
+                <TextBlock
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Text="{Binding WallInfo.Type}"/>
+            </Grid>
+
+        </Border>
+        <Border
+            Grid.Row="3"
+            CornerRadius="5"
+            Padding="16"
+            BorderBrush="#FF11B6F9" 
+            BorderThickness="1"
+            Margin="0 10 0 10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock
+            Grid.Row="0"
+            Grid.Column="0"
+            Text="Геометрические параметры"
+                    FontWeight="Bold"/>
+                <TextBlock
+            Grid.Row="1"
+            Grid.Column="0"
+            Text="Длина"/>
+                <TextBlock
+            Grid.Row="1"
+            Grid.Column="1"
+            Text="{Binding WallInfo.Length}"/>
+                <TextBlock
+            Grid.Row="2"
+            Grid.Column="0"
+            Text="Высота"/>
+                <TextBlock
+            Grid.Row="2"
+            Grid.Column="1"
+            Text="{Binding WallInfo.Height}"/>
+                <TextBlock
+            Grid.Row="3"
+            Grid.Column="0"
+            Text="Толщина"/>
+                <TextBlock
+            Grid.Row="3"
+            Grid.Column="1"
+            Text="{Binding WallInfo.Thickness}"/>
+                <TextBlock
+            Grid.Row="4"
+            Grid.Column="0"
+            Text="Объем"/>
+                <TextBlock
+            Grid.Row="4"
+            Grid.Column="1"
+            Text="{Binding WallInfo.Volume}"/>
+                <TextBlock
+            Grid.Row="5"
+            Grid.Column="0"
+            Text="Площадь"/>
+                <TextBlock
+            Grid.Row="5"
+            Grid.Column="1"
+            Text="{Binding WallInfo.Area}"/>
+
+            </Grid>
+
+        </Border>
+        <Border
+            Grid.Row="4"
+            CornerRadius="5"
+            Padding="16"
+            BorderBrush="#FF11B6F9" 
+            BorderThickness="1"
+            Margin="0 10 0 10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Text="Контроль толщины"
+                    FontWeight="Bold"/>
+                <TextBlock
+            Grid.Row="1"
+            Grid.Column="0"
+            Text="Предел толщины:"/>
+                <TextBox
+            Grid.Row="1"
+            Grid.Column="1"
+            Text="{Binding Limit}"/>
+            </Grid>
+        </Border>
+        <StackPanel Grid.Row="5" 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Center">
+            <TextBlock 
+                Text="Статус:" 
+                Margin="0 0 5 0"
+                FontWeight="Bold"/>
+            <TextBlock 
+                Margin="5 0 0 0">
+                <TextBlock.Style>
+                    <Style
+                        TargetType="TextBlock">
+                        <Setter Property="Text" Value="-"/>
+                        <Setter Property="Foreground" Value="Black"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding WallInfo.IsCorrect}" Value="True">
+                                <Setter Property="Text" Value="Соответствует"/>
+                                <Setter Property="Foreground" Value="Green"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding WallInfo.IsCorrect}" Value="False">
+                                <Setter Property="Text" Value="Превышает"/>
+                                <Setter Property="Foreground" Value="Red"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </StackPanel>
+    </Grid>
+</Window>
